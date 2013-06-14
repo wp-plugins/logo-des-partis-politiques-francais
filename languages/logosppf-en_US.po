@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Logos partis politiques français\n"
+"POT-Creation-Date: 2013-06-08 07:52+0100\n"
+"PO-Revision-Date: 2013-06-08 07:56+0100\n"
+"Last-Translator: Bastien Ho <bastienho@eelv.fr>\n"
+"Language-Team: bastho <ecolosites@eelv.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"Language: en_US\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../logos-ppf.php:15
+msgid ""
+"Widget qui affiche les logos et fait un lien vers les principaux partis "
+"politiques fran&ccedil;ais"
+msgstr ""
+"Widget to display logos and make a link to major french political movements"
+
+#: ../logos-ppf.php:16
+msgid "Logos des partis politiques fran&ccedil;ais"
+msgstr "French political movements logos"
+
+#: ../logos-ppf.php:31
+msgid "Logo parti"
+msgstr "Movement logo"
+
+#: ../logos-ppf.php:31
+msgid "Affiche les logos des principaux partis politiques fran&ccedil;ais"
+msgstr "Display logos of major french political movements"
+
+#: ../logos-ppf.php:183
+msgid "Titre"
+msgstr "Title"
+
+#: ../logos-ppf.php:189
+msgid "Parti"
+msgstr "Movement"
+
+#: ../logos-ppf.php:205
+msgid "Lien personnalis&eacute;"
+msgstr "Custom link"
+
+#: ../logos-ppf.php:211
+msgid "Taille"
+msgstr "Size"
+
+#: ../logos-ppf.php:223
+msgid "Boite personnalis&eacute;e :"
+msgstr "Custom box"
+
+#: ../logos-ppf.php:226
+msgid "Largeur"
+msgstr "Width"
+
+#: ../logos-ppf.php:230
+msgid "Hauteur"
+msgstr "Height"

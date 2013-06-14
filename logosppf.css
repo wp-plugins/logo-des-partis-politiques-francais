@@ -1,0 +1,17 @@
+a.lppf{
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+}
+a.lppf.small{
+	width:35px;
+	height:35px;
+}
+a.lppf.medium{
+	width:75px;
+	height:75px;
+}
+a.lppf.large{
+	width:125px;
+	height:125px;
+}
