@@ -1,5 +1,5 @@
-=== Logos des partis politiques français ===
-Contributors: bastho
+=== Logos des partis politiques francais ===
+Contributors: bastho, ecolosites
 Donate link: http://eelv.fr/adherer/
 Tags: widget
 Requires at least: 3.1
