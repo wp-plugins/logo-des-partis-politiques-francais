@@ -49,8 +49,7 @@ Yes, referre to installation instructions
 
 == Screenshots ==
 
-<img src="http://ecolosites.eelv.fr/files/2012/10/newsletter.png" alt="newsletter.png"/>
-<img src="http://ecolosites.eelv.fr/files/2012/10/newsletter2.png" alt="newsletter.png"/>
+<img src="http://ecolosites.eelv.fr/files/2013/06/logopartipolitiquefrancais.png"/>
 
 == Changelog ==
 
