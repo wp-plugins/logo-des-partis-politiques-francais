@@ -3,7 +3,7 @@
 Plugin Name: Logos des partis politiques fran&ccedil;ais
 Plugin URI: http://ecolosites.eelv.fr/articles-evenement-logosppf/
 Description: Widget qui affiche les logos et fait un lien vers les principaux partis politiques fran&ccedil;ais
-Version: 1.0.0
+Version: 1.0.1
 Author: bastho // EÉLV
 Author URI: http://ecolosites.eelv.fr/
 License: CC BY-NC

@@ -53,6 +53,9 @@ Yes, referre to installation instructions
 
 == Changelog ==
 
+= 1.0.1 =
+* Add Parti Pirate
+
 = 1.0 =
 * Plugin release
 
