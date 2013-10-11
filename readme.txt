@@ -53,6 +53,9 @@ Yes, referre to installation instructions
 
 == Changelog ==
 
+= 1.1.0 =
+* Add : Possibility to ban some logos from network
+
 = 1.0.1 =
 * Add Parti Pirate
 

@@ -3,7 +3,7 @@
 Plugin Name: Logos des partis politiques fran&ccedil;ais
 Plugin URI: http://ecolosites.eelv.fr/articles-evenement-logosppf/
 Description: Widget qui affiche les logos et fait un lien vers les principaux partis politiques fran&ccedil;ais
-Version: 1.0.1
+Version: 1.1.0
 Author: bastho // EÉLV
 Author URI: http://ecolosites.eelv.fr/
 License: CC BY-NC
@@ -11,15 +11,65 @@ Text Domain: logosppf
 Domain Path: /languages
 */
 
-function no_use(){
-	__('Widget qui affiche les logos et fait un lien vers les principaux partis politiques fran&ccedil;ais','logosppf');
-	__('Logos des partis politiques fran&ccedil;ais','logosppf');
+add_action('wp_enqueue_scripts', array('logosppf','scripts'));
+add_action('widgets_init', array('logosppf','register'));
+if(defined('MULTISITE') && MULTISITE==true){
+	add_action( 'network_admin_menu', array('logosppf','menu'));
 }
-
-
-add_action('wp_enqueue_scripts', 'logosppf_scripts');
-function logosppf_scripts(){
-	wp_enqueue_style('logosppf', plugins_url('/logosppf.css', __FILE__), false, null);
+else{
+	add_action( 'admin_menu', array('logosppf','menu'));
+}
+class logosppf{
+	function no_use(){
+		__('Widget qui affiche les logos et fait un lien vers les principaux partis politiques fran&ccedil;ais','logosppf');
+		__('Logos des partis politiques fran&ccedil;ais','logosppf');
+	}	
+	
+	function scripts(){
+		wp_enqueue_style('logosppf', plugins_url('/logosppf.css', __FILE__), false, null);
+	}
+	
+	function register(){
+		register_widget('logosppf_widget');	
+	}
+	
+	function menu() {
+	  add_submenu_page('settings.php', __('Logos des partis', 'logosppf' ), __('Logos des partis', 'logosppf' ), 'manage_option', 'logosppfadmin', array('logosppf','admin'));   
+	}
+	
+	function admin(){
+		if( isset($_POST['logosppf'])) {    
+	      update_site_option( 'logosppf', $_REQUEST['logosppf'] );		       
+	      ?>
+	      <div class="updated"><p><strong><?php _e('Options sauvegardées', 'logosppf' ); ?></strong></p></div>
+	      <?php 
+	    }
+	   $logosppf = get_site_option( 'logosppf',array('ban'=>''));
+       $logos = logosppf_widget::liste();
+	  ?>  
+  <div class="wrap">
+        <div id="icon-edit" class="icon32 icon32-posts-logosppf"><br/></div>
+        <h2><?=_e('Logos partis', 'logosppf' )?></h2>
+        
+    <form method="post" action="#">         
+        <p><label><?=_e('Logos bannis :', 'logosppf' )?>
+               <input  type="text" name="logosppf[ban]"  size="60"  value="<?=$logosppf['ban']?>" class="wide">
+               <?=_e('(séparé par une virgule)', 'logosppf' )?>
+        </label>
+        <legend>
+        	<?=_e('Logos disponibles :', 'logosppf' )?>
+        <?php foreach($logos as $logo){ ?> 
+        	<?=$logo['name']?> 
+		<?php } ?>
+        </legend>
+        </p>
+	    <p class="submit">
+	    	<input type="submit" name="Submit" value="<?php _e('Enregistrer', 'logosppf' ) ?>" />
+	    </p>         
+    </form>
+    </div>
+  <?php
+	}
 }
 
 class logosppf_widget extends WP_Widget {
@@ -27,6 +77,7 @@ class logosppf_widget extends WP_Widget {
    public static $logospath;
    public static $resizedpath;
    public static $exts;
+   public static $ban;
    function logosppf_widget() {
   	  parent::WP_Widget(false, __( 'Logo parti', 'logosppf' ),array('description'=>__( 'Affiche les logos des principaux partis politiques fran&ccedil;ais', 'logosppf' )));
    	  self::$sizes=array(
@@ -37,16 +88,20 @@ class logosppf_widget extends WP_Widget {
 	  self::$logospath=plugin_dir_path(__FILE__).'logos/';
 	  self::$resizedpath=plugin_dir_path(__FILE__).'logos/resized/';
 	  self::$exts=array('gif','jpg','png');
+	  $logosppf = get_site_option( 'logosppf',array('ban'=>''));
+	  self::$ban= explode(',',$logosppf['ban']);
    }
    function get($file){
-   	  if($file!='' && is_file($file) && in_array(substr($file,-3),self::$exts)){
-   	  	$filename=basename($file);
+   		$filename=basename($file);
+		$parti=substr($filename,0,strpos($filename,'_'));
+   	  if($file!='' && is_file($file) && in_array(substr($file,-3),self::$exts) && !in_array($parti,self::$ban)){
+   	  	
 		return array(
 			'abspath'=>plugin_dir_path(__FILE__).'/logos/'.$filename,
 			'path'=>plugins_url('/logos/'.$filename, __FILE__),
 			'file'=>$filename,
 			'url'=>substr($filename,strpos($filename,'_')+1,-4),
-			'name'=>substr($filename,0,strpos($filename,'_')),
+			'name'=>$parti,
 		);
 	}
 	  return false;
@@ -238,8 +293,3 @@ class logosppf_widget extends WP_Widget {
 
 }
 
-function register_logosppf(){
-	register_widget('logosppf_widget');	
-}
-
-add_action('widgets_init', 'register_logosppf');
