@@ -3,7 +3,7 @@ Contributors: bastho, ecolosites
 Donate link: http://eelv.fr/adherer/
 Tags: widget
 Requires at least: 3.1
-Tested up to: 3.5.1
+Tested up to: 4.1.0
 Stable tag: /trunk
 License: CC BY-NC 3.0
 License URI: http://creativecommons.org/licenses/by-nc/3.0/
@@ -20,7 +20,7 @@ A widget to display logos and make a link to major french political movements
 * Custom sizes (optionnal : width, height)
 * Custom link (optionnal)
 
-Available languages : 
+Available languages :
 FR
 EN
 
@@ -31,7 +31,7 @@ EN
 
 1. Upload the plugin folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress admin
-3. You can easily add or remove logos by uploading /deleting files from plugin_directory/logos/ folder. 
+3. You can easily add or remove logos by uploading /deleting files from plugin_directory/logos/ folder.
 Just respect the filename format as well :
 ACCRONYM_urlofthelink.jpg
 you can use .jpg .gif or .png images
@@ -53,11 +53,18 @@ Yes, referre to installation instructions
 
 == Changelog ==
 
+= 1.2.0 =
+* Add: New logos (Nouvelle Donne, UDI)
+* Add: Cleaner ban management UI
+* Add: Widget background color picker
+* Fix: Improve security
+* Fix: Remove PHP strict-standards warnings
+
 = 1.1.0 =
-* Add : Possibility to ban some logos from network
+* Add: Possibility to ban some logos from network
 
 = 1.0.1 =
-* Add Parti Pirate
+* Add: Parti Pirate
 
 = 1.0 =
 * Plugin release
