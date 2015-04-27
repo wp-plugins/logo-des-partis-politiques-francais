@@ -3,7 +3,7 @@ Contributors: bastho, ecolosites
 Donate link: http://eelv.fr/adherer/
 Tags: widget
 Requires at least: 3.1
-Tested up to: 4.1.0
+Tested up to: 4.2.0
 Stable tag: /trunk
 License: CC BY-NC 3.0
 License URI: http://creativecommons.org/licenses/by-nc/3.0/
@@ -52,6 +52,9 @@ Yes, referre to installation instructions
 <img src="http://ecolosites.eelv.fr/files/2013/06/logopartipolitiquefrancais.png"/>
 
 == Changelog ==
+
+= 1.3.0 =
+* Add: option to display rounded logotypes
 
 = 1.2.0 =
 * Add: New logos (Nouvelle Donne, UDI)

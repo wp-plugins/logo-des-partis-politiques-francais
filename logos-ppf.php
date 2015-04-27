@@ -3,7 +3,7 @@
   Plugin Name: Logos des partis politiques fran&ccedil;ais
   Plugin URI: http://ecolosites.eelv.fr/articles-evenement-logosppf/
   Description: Widget qui affiche les logos et fait un lien vers les principaux partis politiques fran&ccedil;ais
-  Version: 1.2.0
+  Version: 1.3.0
   Author: bastho // EÉLV
   Author URI: http://ecolosites.eelv.fr/
   License: CC BY-NC
@@ -214,6 +214,7 @@ class logosppf_widget extends WP_Widget {
 	    $size = (isset($instance['size']) && !empty($instance['size'])) ? $instance['size'] : 'medium';
 	    $title = (isset($instance['title']) && !empty($instance['title'])) ? $instance['title'] : '';
 	    $background = (isset($instance['background']) && !empty($instance['background'])) ? $instance['background'] : '';
+	    $shape = (isset($instance['shape']) && !empty($instance['shape'])) ? $instance['shape'] : 'square';
 
 	    $width = (isset($instance['width']) && !empty($instance['width'])) ? $instance['width'] : self::$sizes[$size][0];
 	    $height = (isset($instance['height']) && !empty($instance['height'])) ? $instance['height'] : self::$sizes[$size][1];
@@ -239,7 +240,7 @@ class logosppf_widget extends WP_Widget {
 		    echo $args['after_title'];
 		}
 		echo '
-		    <a href="' . $link . '" target="_blank" class="lppf ' . $size . '" style="' . ((isset($instance['width']) && !empty($instance['width'])) ? 'width:' . $width . 'px;' : '') . '' . ((isset($instance['height']) && !empty($instance['height'])) ? 'height:' . $height . 'px;' : '') . 'background:rgb(' . $img['color']['red'] . ',' . $img['color']['green'] . ',' . $img['color']['blue'] . ')">
+		    <a href="' . $link . '" target="_blank" class="lppf ' . $size . ' lppf-'.$shape.'" style="' . ((isset($instance['width']) && !empty($instance['width'])) ? 'width:' . $width . 'px;' : '') . '' . ((isset($instance['height']) && !empty($instance['height'])) ? 'height:' . $height . 'px;' : '') . 'background:rgb(' . $img['color']['red'] . ',' . $img['color']['green'] . ',' . $img['color']['blue'] . ')">
 		    <img src="' . $img['url'] . '" alt="logo ' . $parti['name'] . '" style="margin:' . round(($height - $img['size'][1]) / 2) . 'px auto;"/>
 		    </a>';
 		echo $box_a;
@@ -266,6 +267,7 @@ class logosppf_widget extends WP_Widget {
 
 	/* The style */
 	$background = (isset($instance['background']) && !empty($instance['background'])) ? $instance['background'] : '';
+	$shape = (isset($instance['shape']) && !empty($instance['shape'])) ? $instance['shape'] : 'square';
 
 	/* The link */
 	$link = (isset($instance['link']) && !empty($instance['link'])) ? $instance['link'] : '';
@@ -301,6 +303,14 @@ class logosppf_widget extends WP_Widget {
 	<p>
 	    <label for="<?php echo $this->get_field_id('background'); ?>"><?php _e('Couleur de fond', 'logosppf'); ?>
 		<input class="widefat logosppf-color-picker color-picker-hex wp-color-picker" id="<?php echo $this->get_field_id('background'); ?>" name="<?php echo $this->get_field_name('background'); ?>" type="text" value="<?php echo $background; ?>" onfocus="jQuery(this).wpColorPicker();" />
+	    </label>
+	</p>
+	<p>
+	    <label for="<?php echo $this->get_field_id('shape'); ?>"><?php _e('Forme', 'logosppf'); ?>
+	       	<select  id="<?php echo $this->get_field_id('shape'); ?>" name="<?php echo $this->get_field_name('shape'); ?>">
+		    <option value='square' <?php selected('square',$shape) ?>><?php _e('Carré', 'logosppf'); ?></option>
+		    <option value='disc' <?php selected('disc',$shape) ?>><?php _e('Rond', 'logosppf'); ?></option>
+		</select>
 	    </label>
 	</p>
 
