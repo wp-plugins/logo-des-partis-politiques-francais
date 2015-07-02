@@ -3,7 +3,7 @@
   Plugin Name: Logos des partis politiques fran&ccedil;ais
   Plugin URI: http://ecolosites.eelv.fr/articles-evenement-logosppf/
   Description: Widget qui affiche les logos et fait un lien vers les principaux partis politiques fran&ccedil;ais
-  Version: 1.4.0
+  Version: 1.4.1
   Author: bastho // EÉLV
   Author URI: http://ecolosites.eelv.fr/
   License: CC BY-NC
@@ -214,16 +214,17 @@ class logosppf_widget extends WP_Widget {
 	    $title = (isset($instance['title']) && !empty($instance['title'])) ? $instance['title'] : '';
 	    $background = (isset($instance['background']) && !empty($instance['background'])) ? $instance['background'] : '';
 	    $shape = (isset($instance['shape']) && !empty($instance['shape'])) ? $instance['shape'] : 'square';
+            $class = (isset($instance['class']) && !empty($instance['class'])) ? $instance['class'] : '';
 
 	    $width = (isset($instance['width']) && !empty($instance['width'])) ? $instance['width'] : self::$sizes[$size][0];
 	    $height = (isset($instance['height']) && !empty($instance['height'])) ? $instance['height'] : self::$sizes[$size][1];
 	    $link = (isset($instance['link']) && !empty($instance['link'])) ? $instance['link'] : 'http://' . $parti['url'];
 
 	    if (false !== $img = self::resize($parti['file'], $width, $height, $size)) {
-		$box_b = !empty($args['before_widget'])?$args['before_widget']:'<span>';
-		$box_a = !empty($args['after_widget'])?$args['after_widget']:'</span>';
-		if(!empty($background)){
-		    $add_style = 'background:'.$background.';'
+		$box_b = !empty($args['before_widget'])?$args['before_widget']:'<div>';
+		$box_a = !empty($args['after_widget'])?$args['after_widget']:'</div>';
+		if(!empty($background) || !empty($instance['width']) || !empty($instance['height'])){
+		    $add_style = (!empty($background) ? 'background:'.$background.';' : '')
                         . ((isset($instance['width']) && !empty($instance['width'])) ? 'width:' . $width . 'px;' : '')
                         . ((isset($instance['height']) && !empty($instance['height'])) ? 'height:' . $height . 'px;' : '');
 		    if(strstr($box_b,'style=')){
@@ -231,7 +232,16 @@ class logosppf_widget extends WP_Widget {
 			$box_b=  str_replace('style=\'', 'style=\''.$add_style, $box_b);
 		    }
 		    else{
-			$box_b=str_replace('>','style="'.$add_style.'">',$box_b);
+			$box_b=str_replace('>',' style="'.$add_style.'">',$box_b);
+		    }
+		}
+                if(!empty($class)){
+		    if(strstr($box_b,'class=')){
+			$box_b=  str_replace('class="', 'class="'.$class.' ', $box_b);
+			$box_b=  str_replace('class=\'', 'class=\''.$class.' ', $box_b);
+		    }
+		    else{
+			$box_b=str_replace('>',' class="'.$class.'">',$box_b);
 		    }
 		}
 		echo $box_b;
@@ -271,6 +281,7 @@ class logosppf_widget extends WP_Widget {
 	/* The style */
 	$background = (isset($instance['background']) && !empty($instance['background'])) ? $instance['background'] : '';
 	$shape = (isset($instance['shape']) && !empty($instance['shape'])) ? $instance['shape'] : 'square';
+	$class = (isset($instance['class']) && !empty($instance['class'])) ? $instance['class'] : '';
 
 	/* The link */
 	$link = (isset($instance['link']) && !empty($instance['link'])) ? $instance['link'] : '';
@@ -347,7 +358,11 @@ class logosppf_widget extends WP_Widget {
 		px
 	    </label>
 	</p>
-
+        <p>
+	    <label for="<?php echo $this->get_field_id('class'); ?>"><?php _e('Classe', 'logosppf'); ?>
+		<input class="widefat" id="<?php echo $this->get_field_id('class'); ?>" name="<?php echo $this->get_field_name('class'); ?>" type="text" value="<?php echo $class; ?>"/>
+	    </label>
+	</p>
 	<?php
     }
 }
