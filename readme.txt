@@ -53,6 +53,10 @@ Yes, referre to installation instructions
 
 == Changelog ==
 
+= 1.4.1 =
+* Add: custom class option
+* Fix: better check before generating style attribute
+
 = 1.4.0 =
 * Add: full size option
 * Add: transparent background
