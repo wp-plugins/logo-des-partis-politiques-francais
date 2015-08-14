@@ -3,7 +3,7 @@ Contributors: bastho, ecolosites
 Donate link: http://eelv.fr/adherer/
 Tags: widget
 Requires at least: 3.1
-Tested up to: 4.2.2
+Tested up to: 4.3
 Stable tag: /trunk
 License: CC BY-NC 3.0
 License URI: http://creativecommons.org/licenses/by-nc/3.0/
@@ -52,6 +52,10 @@ Yes, referre to installation instructions
 <img src="http://ecolosites.eelv.fr/files/2013/06/logopartipolitiquefrancais.png"/>
 
 == Changelog ==
+
+= 1.4.2 =
+release date: aug. 14 2015
+* WP 4.3 compliant
 
 = 1.4.1 =
 * Add: custom class option
