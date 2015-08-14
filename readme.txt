@@ -53,6 +53,9 @@ Yes, referre to installation instructions
 
 == Changelog ==
 
+= 1.4.3 =
+* more WP 4.3 compliant
+
 = 1.4.2 =
 release date: aug. 14 2015
 
