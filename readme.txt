@@ -53,6 +53,12 @@ Yes, referre to installation instructions
 
 == Changelog ==
 
+= 1.5.0 =
+release date: aug. 27 2015
+
+* Lighter logos
+* target option : _blank or _self
+
 = 1.4.3 =
 * more WP 4.3 compliant
 

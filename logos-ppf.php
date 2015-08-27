@@ -3,7 +3,7 @@
   Plugin Name: Logos des partis politiques fran&ccedil;ais
   Plugin URI: http://ecolosites.eelv.fr/articles-evenement-logosppf/
   Description: Widget qui affiche les logos et fait un lien vers les principaux partis politiques fran&ccedil;ais
-  Version: 1.4.3
+  Version: 1.5.0
   Author: bastho // EÉLV
   Author URI: http://ecolosites.eelv.fr/
   License: CC BY-NC
@@ -222,6 +222,7 @@ class logosppf_widget extends WP_Widget {
 	    $width = (isset($instance['width']) && !empty($instance['width'])) ? $instance['width'] : self::$sizes[$size][0];
 	    $height = (isset($instance['height']) && !empty($instance['height'])) ? $instance['height'] : self::$sizes[$size][1];
 	    $link = (isset($instance['link']) && !empty($instance['link'])) ? $instance['link'] : 'http://' . $parti['url'];
+            $target = (isset($instance['target']) && !empty($instance['target'])) ? $instance['target'] : '_blank';
 
 	    if (false !== $img = self::resize($parti['file'], $width, $height, $size)) {
 		$box_b = !empty($args['before_widget'])?$args['before_widget']:'<div>';
@@ -254,7 +255,7 @@ class logosppf_widget extends WP_Widget {
 		    echo $args['after_title'];
 		}
 		echo '
-		    <a href="' . $link . '" target="_blank" class="lppf ' . $size . ' lppf-'.$shape.'" style="' 
+		    <a href="' . $link . '" target="'.$target.'" class="lppf ' . $size . ' lppf-'.$shape.'" style="' 
                         . ($img['color']?'background:rgb(' . $img['color']['red'] . ',' . $img['color']['green'] . ',' . $img['color']['blue'].')':'') 
                         . '">
 		    <img src="' . $img['url'] . '" alt="logo ' . $parti['name'] . '" style="margin:' . round(($height - $img['size'][1]) / 2) . 'px auto;"/>
@@ -288,6 +289,7 @@ class logosppf_widget extends WP_Widget {
 
 	/* The link */
 	$link = (isset($instance['link']) && !empty($instance['link'])) ? $instance['link'] : '';
+	$target = (isset($instance['target']) && !empty($instance['target'])) ? $instance['target'] : '_blank';
 
 	$placeholdlink = '';
 	?>
@@ -339,6 +341,14 @@ class logosppf_widget extends WP_Widget {
 	<p>
 	    <label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Lien personnalis&eacute;', 'logosppf'); ?>
 		<input class="widefat" id="<?php echo $this->get_field_id('link'); ?>" placeholder="http://<?php echo $placeholdlink; ?>" name="<?php echo $this->get_field_name('link'); ?>" type="text" value="<?php echo $link; ?>" />
+	   </label>
+	</p>
+	<p>
+	    <label for="<?php echo $this->get_field_id('target'); ?>"><?php _e('Destination', 'logosppf'); ?>
+		<select class="widefat" id="<?php echo $this->get_field_id('target'); ?>" name="<?php echo $this->get_field_name('target'); ?>">
+                    <option value="_blank" <?php selected($target, '_blank', true); ?>><?php _e('Nouvelle fenetre', 'logosppf'); ?></option>
+                    <option value="_self" <?php selected($target, '_self', true); ?>><?php _e('Interne', 'logosppf'); ?></option>
+                </select>
 	    </label>
 	</p>
 
